@@ -1,0 +1,89 @@
+{
+  "name": "VO2max 3x3min",
+  "description": "Séance VO2max pour développer la puissance maximale aérobie",
+  "sport": "Bike",
+  "totalTime": 3600,
+  "created": "2025-07-17T22:16:32.049125",
+  "intervals": [
+    {
+      "step": 1,
+      "duration": 900,
+      "powerZone": "Z1",
+      "powerMin": 0,
+      "powerMax": 176,
+      "powerTarget": 88.0,
+      "cadence": 85,
+      "description": "Échauffement"
+    },
+    {
+      "step": 2,
+      "duration": 600,
+      "powerZone": "Z2",
+      "powerMin": 179,
+      "powerMax": 240,
+      "powerTarget": 209.5,
+      "cadence": 90,
+      "description": "Préparation"
+    },
+    {
+      "step": 3,
+      "duration": 180,
+      "powerZone": "Z5",
+      "powerMin": 339,
+      "powerMax": 384,
+      "powerTarget": 361.5,
+      "cadence": 100,
+      "description": "VO2max interval 1/3"
+    },
+    {
+      "step": 4,
+      "duration": 180,
+      "powerZone": "Z2",
+      "powerMin": 179,
+      "powerMax": 240,
+      "powerTarget": 209.5,
+      "cadence": 85,
+      "description": "Récupération"
+    },
+    {
+      "step": 5,
+      "duration": 180,
+      "powerZone": "Z5",
+      "powerMin": 339,
+      "powerMax": 384,
+      "powerTarget": 361.5,
+      "cadence": 100,
+      "description": "VO2max interval 2/3"
+    },
+    {
+      "step": 6,
+      "duration": 180,
+      "powerZone": "Z2",
+      "powerMin": 179,
+      "powerMax": 240,
+      "powerTarget": 209.5,
+      "cadence": 85,
+      "description": "Récupération"
+    },
+    {
+      "step": 7,
+      "duration": 180,
+      "powerZone": "Z5",
+      "powerMin": 339,
+      "powerMax": 384,
+      "powerTarget": 361.5,
+      "cadence": 100,
+      "description": "VO2max interval 3/3"
+    },
+    {
+      "step": 8,
+      "duration": 900,
+      "powerZone": "Z1",
+      "powerMin": 0,
+      "powerMax": 176,
+      "powerTarget": 88.0,
+      "cadence": 80,
+      "description": "Retour au calme"
+    }
+  ]
+}

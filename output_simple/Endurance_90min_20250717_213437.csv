@@ -1,0 +1,4 @@
+Step,Duration_min,Zone,Power_Min_W,Power_Max_W,Power_Avg_W,Cadence_rpm,Description,TSS_estimated
+1,15,Z1,0,137,68.5,85,Échauffement progressif,1.9
+2,60,Z2,140,187,163.5,90,Endurance stable - conversation possible,42.8
+3,15,Z1,0,137,68.5,85,Retour au calme,1.9

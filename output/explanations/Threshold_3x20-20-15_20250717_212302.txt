@@ -1,0 +1,77 @@
+🚴 SÉANCE D'ENTRAÎNEMENT CYCLISTE - THRESHOLD 3X(20-20-15)
+============================================================
+
+👤 CYCLISTE: Jean Cycliste
+📊 FTP: 250W | Poids: 70kg | Ratio: 3.6W/kg
+⏱️  DURÉE TOTALE: 100 minutes
+🎯 FOCUS: THRESHOLD
+📈 TSS ESTIMÉ: 105.1
+
+📝 DESCRIPTION:
+Séance de seuil lactique pour améliorer le FTP
+
+🔄 STRUCTURE DE LA SÉANCE:
+----------------------------------------
+ 1. 15min | Z1 (0-137W) | Active Recovery
+    💡 Échauffement
+    🔄 Cadence cible: 85 rpm
+
+ 2. 10min | Z2 (140-187W) | Endurance
+    💡 Préparation
+    🔄 Cadence cible: 90 rpm
+
+ 3. 20min | Z4 (227-262W) | Lactate Threshold
+    💡 Bloc seuil 1 - maintenir la puissance
+    🔄 Cadence cible: 95 rpm
+
+ 4.  5min | Z2 (140-187W) | Endurance
+    💡 Récupération
+    🔄 Cadence cible: 85 rpm
+
+ 5. 20min | Z4 (227-262W) | Lactate Threshold
+    💡 Bloc seuil 2 - concentration mentale
+    🔄 Cadence cible: 95 rpm
+
+ 6.  5min | Z2 (140-187W) | Endurance
+    💡 Récupération
+    🔄 Cadence cible: 85 rpm
+
+ 7. 15min | Z4 (227-262W) | Lactate Threshold
+    💡 Bloc seuil 3 - finir fort
+    🔄 Cadence cible: 95 rpm
+
+ 8. 10min | Z1 (0-137W) | Active Recovery
+    💡 Retour au calme
+    🔄 Cadence cible: 80 rpm
+
+🧠 CONSEILS BASÉS SUR LA RECHERCHE:
+----------------------------------------
+• Effort 'comfortablement dur' - limite de la conversation
+• Maintenir la puissance stable sur chaque bloc
+• Améliore l'utilisation du lactate comme carburant
+• Crucial pour l'amélioration du FTP
+
+🥤 NUTRITION & HYDRATATION:
+----------------------------------------
+• Avant: Glucides 1-2h avant (1-2g/kg poids corps)
+• Pendant: 200-250ml d'eau toutes les 15-20min
+• Pendant: 30-60g glucides/heure après 90min
+• Après: Protéines + glucides dans les 30min
+
+💤 RÉCUPÉRATION:
+----------------------------------------
+• Retour au calme de 10-15min minimum
+• Étirements légers post-séance
+• Sommeil: 7-9h pour adaptation optimale
+• Jour suivant: Récupération active ou repos selon plan
+
+📊 MÉTRIQUES À SURVEILLER:
+----------------------------------------
+• Puissance moyenne et normalized power
+• Fréquence cardiaque moyenne par zone
+• Variabilité de la puissance (coefficient de variation)
+• RPE (échelle de 1-10) pour chaque interval
+• TSS final vs TSS planifié
+
+Généré le 17/07/2025 à 21:23
+Basé sur les recherches récentes en periodization cycliste 2023-2025

@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<workout_file>
+  <author>Cycling AI Coach</author>
+  <name>VO2max 3x3min</name>
+  <description>Séance VO2max pour développer la puissance maximale aérobie</description>
+  <tags>
+    <tag name="vo2max" />
+    </tags>
+  <workout>
+    <Warmup Duration="900" PowerLow="0.000" PowerHigh="0.550" Cadence="85" />
+    <SteadyState Duration="600" PowerLow="0.559" PowerHigh="0.750" Cadence="90" />
+    <SteadyState Duration="180" PowerLow="1.059" PowerHigh="1.200" Cadence="100" />
+    <SteadyState Duration="180" PowerLow="0.559" PowerHigh="0.750" Cadence="85" />
+    <SteadyState Duration="180" PowerLow="1.059" PowerHigh="1.200" Cadence="100" />
+    <SteadyState Duration="180" PowerLow="0.559" PowerHigh="0.750" Cadence="85" />
+    <SteadyState Duration="180" PowerLow="1.059" PowerHigh="1.200" Cadence="100" />
+    <Cooldown Duration="900" PowerLow="0.000" PowerHigh="0.550" Cadence="80" />
+    </workout>
+  </workout_file>
