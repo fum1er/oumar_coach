@@ -1,7 +1,0 @@
-Step,Duration_min,Zone,Power_Min_W,Power_Max_W,Power_Avg_W,Cadence_rpm,Description,TSS_estimated
-1,15,Z1,0,137,68.5,85,Échauffement,1.9
-2,10,Z2,140,187,163.5,90,Préparation,7.1
-3,20,Z4,227,262,244.5,95,Bloc seuil 1 - maintenir la puissance,31.9
-4,5,Z2,140,187,163.5,85,Récupération,3.6
-5,20,Z4,227,262,244.5,95,Bloc seuil 2 - concentration mentale,31.9
-6,10,Z1,0,137,68.5,80,Retour au calme,1.3
