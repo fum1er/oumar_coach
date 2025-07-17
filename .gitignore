@@ -1,0 +1,10 @@
+# Ouvre ton .gitignore et remplace-le par ça :
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
