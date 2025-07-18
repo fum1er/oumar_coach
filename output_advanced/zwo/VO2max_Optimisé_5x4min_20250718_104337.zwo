@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<workout_file>
+  <author>Advanced Cycling AI Coach</author>
+  <name>VO2max Optimisé 5×4min</name>
+  <description>Séance VO2max scientifiquement optimisée pour niveau intermediate : 5 intervalles de 4 minutes en Zone 5
+
+🎯 Amélioration de la Puissance Maximale Aérobie (PMA) et de la consommation maximale d'oxygène (VO2max) à travers des intervalles spécifiques de 3-4 minutes à 106-120% FTP</description>
+  <tags>
+    <tag name="vo2max" />
+    <tag name="scientific" />
+    <tag name="ai_generated" />
+    </tags>
+  <workout>
+    <Warmup Duration="900" PowerLow="0.450" PowerHigh="0.560" Cadence="85" />
+    <SteadyState Duration="600" PowerLow="0.560" PowerHigh="0.750" Cadence="90" />
+    <Cooldown Duration="900" PowerLow="0.360" PowerHigh="0.550" Cadence="80" />
+    <SteadyState Duration="240" PowerLow="1.060" PowerHigh="1.200" Cadence="100" Description="VO2max Z5 - Puissance maximale aérobie (1/5)" />
+    <SteadyState Duration="180" PowerLow="0.560" PowerHigh="0.750" Cadence="85" Description="Récupération active Z2 - Maintien flux sanguin" />
+    <SteadyState Duration="240" PowerLow="1.060" PowerHigh="1.200" Cadence="100" Description="VO2max Z5 - Puissance maximale aérobie (2/5)" />
+    <SteadyState Duration="180" PowerLow="0.560" PowerHigh="0.750" Cadence="85" Description="Récupération active Z2 - Maintien flux sanguin" />
+    <SteadyState Duration="240" PowerLow="1.060" PowerHigh="1.200" Cadence="100" Description="VO2max Z5 - Puissance maximale aérobie (3/5)" />
+    <SteadyState Duration="180" PowerLow="0.560" PowerHigh="0.750" Cadence="85" Description="Récupération active Z2 - Maintien flux sanguin" />
+    <SteadyState Duration="240" PowerLow="1.060" PowerHigh="1.200" Cadence="100" Description="VO2max Z5 - Puissance maximale aérobie (4/5)" />
+    <SteadyState Duration="180" PowerLow="0.560" PowerHigh="0.750" Cadence="85" Description="Récupération active Z2 - Maintien flux sanguin" />
+    <SteadyState Duration="240" PowerLow="1.060" PowerHigh="1.200" Cadence="100" Description="VO2max Z5 - Puissance maximale aérobie (5/5)" />
+    </workout>
+  </workout_file>

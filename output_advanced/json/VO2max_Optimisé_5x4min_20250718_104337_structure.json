@@ -1,0 +1,96 @@
+{
+  "metadata": {
+    "name": "VO2max Optimisé 5×4min",
+    "type": "vo2max",
+    "description": "Séance VO2max scientifiquement optimisée pour niveau intermediate : 5 intervalles de 4 minutes en Zone 5",
+    "scientific_objective": "Amélioration de la Puissance Maximale Aérobie (PMA) et de la consommation maximale d'oxygène (VO2max) à travers des intervalles spécifiques de 3-4 minutes à 106-120% FTP",
+    "total_duration_minutes": 75,
+    "estimated_tss": 71.990625,
+    "ftp": 320,
+    "generated_at": "2025-07-18T10:43:37.337533",
+    "generator": "Advanced Cycling AI Coach"
+  },
+  "segments": [
+    {
+      "type": "Warmup",
+      "duration_minutes": 15,
+      "power_pct_ftp": {
+        "min": 0.45,
+        "max": 0.56
+      },
+      "power_watts": {
+        "min": 144,
+        "max": 179
+      },
+      "cadence_rpm": 85,
+      "description": "Échauffement progressif avec activation cardiovasculaire",
+      "scientific_rationale": "Préparation du système cardiovasculaire et augmentation graduelle du flux sanguin musculaire"
+    },
+    {
+      "type": "SteadyState",
+      "duration_minutes": 10,
+      "power_pct_ftp": {
+        "min": 0.56,
+        "max": 0.75
+      },
+      "power_watts": {
+        "min": 179,
+        "max": 240
+      },
+      "cadence_rpm": 90,
+      "description": "Activation aérobie pré-intervalles",
+      "scientific_rationale": "Activation des voies métaboliques aérobies avant les efforts en Zone 5"
+    },
+    {
+      "type": "Cooldown",
+      "duration_minutes": 15,
+      "power_pct_ftp": {
+        "min": 0.36000000000000004,
+        "max": 0.55
+      },
+      "power_watts": {
+        "min": 115,
+        "max": 176
+      },
+      "cadence_rpm": 80,
+      "description": "Retour au calme actif pour élimination lactate",
+      "scientific_rationale": "Maintien circulation sanguine pour élimination déchets métaboliques"
+    }
+  ],
+  "repeated_intervals": [
+    {
+      "repetitions": 5,
+      "work_phase": {
+        "duration_minutes": 4,
+        "power_pct_ftp": {
+          "min": 1.06,
+          "max": 1.2
+        },
+        "power_watts": {
+          "min": 339,
+          "max": 384
+        },
+        "cadence_rpm": 100,
+        "description": "VO2max Z5 - Puissance maximale aérobie"
+      },
+      "rest_phase": {
+        "duration_minutes": 3,
+        "power_pct_ftp": {
+          "min": 0.56,
+          "max": 0.75
+        },
+        "power_watts": {
+          "min": 179,
+          "max": 240
+        },
+        "cadence_rpm": 85,
+        "description": "Récupération active Z2 - Maintien flux sanguin"
+      },
+      "scientific_rationale": "Intervalles 5×4min optimisés pour stimuler VO2max sans fatigue excessive pour niveau intermediate"
+    }
+  ],
+  "coaching_notes": {
+    "adaptation_notes": "Adapté pour intermediate: 5 répétitions (max 5), récupération ratio 0.75, cadence élevée (100 rpm) pour optimiser la vélocité",
+    "coaching_tips": "Maintenez une cadence élevée (95-105 rpm), respirez profondément, acceptez l'inconfort en fin d'intervalle. Focus sur la régularité plutôt que les pics de puissance."
+  }
+}

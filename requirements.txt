@@ -1,30 +1,44 @@
-# === CYCLING AI AGENT - REQUIREMENTS CORRIGÉS ===
+# === CYCLING AI COACH - REQUIREMENTS ===
 
-# LangChain Core (versions compatibles)
+# Core dependencies (toujours nécessaires)
+python-dotenv>=1.0.0
+
+# LangChain et IA (optionnel pour mode complet)
 langchain>=0.1.0,<0.2.0
 langchain-openai>=0.0.5
 langchain-community>=0.0.10
-
-# Interface et outils
 openai>=1.0.0
-python-dotenv>=1.0.0
 
-# RAG et vectorisation
+# RAG et vectorisation (optionnel pour recherche avancée) 
 faiss-cpu>=1.7.0
 numpy>=1.21.0
 
-# Données et fichiers
+# Manipulation de données (optionnel)
 pandas>=1.5.0
 
-# Optionnel : APIs externes 
-# stravalib>=1.0.0
-# requests>=2.28.0
-
-# Optionnel : Interface web
+# Interface web (optionnel)
 # streamlit>=1.28.0
 # gradio>=4.0.0
 
-# Dev tools (optionnel)
+# APIs externes (optionnel)
+# stravalib>=1.0.0
+# requests>=2.28.0
+
+# Outils de développement (optionnel)
 # pytest>=7.0.0
 # black>=23.0.0
 # flake8>=6.0.0
+
+# Installation par niveaux :
+
+# NIVEAU 1 - Fonctionnalités de base (génération séances sans IA):
+# pip install python-dotenv
+
+# NIVEAU 2 - IA conversationnelle complète:
+# pip install langchain langchain-openai langchain-community openai python-dotenv
+
+# NIVEAU 3 - RAG avancé:
+# pip install langchain langchain-openai langchain-community faiss-cpu numpy openai python-dotenv
+
+# NIVEAU 4 - Interface web:
+# pip install streamlit (ou gradio) + niveau 3
