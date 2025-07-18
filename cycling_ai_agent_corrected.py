@@ -26,6 +26,7 @@ try:
     from langchain.memory import ConversationBufferWindowMemory
     from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
     from langchain.agents import create_openai_functions_agent, AgentExecutor
+    from tools.periodization_tool import create_periodization_tool
     LANGCHAIN_AVAILABLE = True
     print("✅ LangChain disponible")
 except ImportError as e:
@@ -143,6 +144,18 @@ class CyclingAIAgent:
                     handle_parsing_errors=True,
                     max_iterations=5
                 )
+
+            # Outils (avec le nouveau)
+            self.tools = []
+            try:
+                knowledge_tool = create_knowledge_tool()
+                workout_tool = create_workout_tool()
+                periodization_tool = create_periodization_tool()  # ⭐ NOUVEAU
+                
+                self.tools = [knowledge_tool, workout_tool, periodization_tool]
+                print("✅ Outils LangChain créés (avec périodisation)")
+            except Exception as e:
+                print(f"⚠️ Erreur création outils: {e}")
                 print("✅ Agent LangChain initialisé")
             else:
                 self.agent_executor = None
@@ -155,6 +168,18 @@ class CyclingAIAgent:
     def _create_system_prompt(self) -> ChatPromptTemplate:
         """Crée le prompt système optimisé"""
         system_message = """Tu es un COACH CYCLISTE IA D'ÉLITE avec une expertise scientifique approfondie.
+
+⚡ PÉRIODISATION AVANCÉE:
+- Utilise 'create_periodization_plan' pour créer des plans multi-semaines
+- Basé sur les théories de Seiler, Coggan, Friel, Issurin
+- Modèles: Polarisé, Pyramidal, Traditionnel, Block
+- Personnalisation selon niveau et événements cibles
+
+🗓️ PLANIFICATION:
+- Plans de 8-20 semaines
+- Progression scientifique des charges
+- Périodisation par phases
+- Adaptation aux contraintes personnelles 
 
 🧠 EXPERTISE AVANCÉE:
 • Physiologie de l'exercice et adaptations cardiovasculaires

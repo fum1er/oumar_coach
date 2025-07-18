@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Cycliste IA - Planification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-title {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon {
+            font-size: 1.5em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ecf0f1;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #ecf0f1;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            transition: width 0.3s ease;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .metric-value {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .phase-timeline {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .phase-timeline::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #ecf0f1;
+            z-index: 1;
+        }
+
+        .phase-item {
+            background: white;
+            border: 3px solid #ecf0f1;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #7f8c8d;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .phase-item.active {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        .phase-item.completed {
+            background: #2ecc71;
+            color: white;
+            border-color: #2ecc71;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .calendar-day {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9em;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-day:hover {
+            background: #e9ecef;
+            border-color: #3498db;
+        }
+
+        .calendar-day.workout {
+            background: #3498db;
+            color: white;
+        }
+
+        .calendar-day.recovery {
+            background: #2ecc71;
+            color: white;
+        }
+
+        .calendar-day.intense {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .results {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid #3498db;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚴 Cycling Coach IA</h1>
+            <p>Planification d'Entraînement Scientifique Multi-Semaines</p>
+        </div>
+
+        <div class="dashboard">
+            <!-- Création de Plan -->
+            <div class="card">
+                <h2 class="card-title">
+                    <span class="icon">📅</span>
+                    Créer un Plan d'Entraînement
+                </h2>
+                
+                <form id="planForm">
+                    <div class="form-group">
+                        <label for="duration">Durée du plan (semaines)</label>
+                        <select id="duration" name="duration">
+                            <option value="8">8 semaines</option>
+                            <option value="12" selected>12 semaines</option>
+                            <option value="16">16 semaines</option>
+                            <option value="20">20 semaines</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="level">Niveau d'expérience</label>
+                        <select id="level" name="level">
+                            <option value="beginner">Débutant</option>
+                            <option value="intermediate" selected>Intermédiaire</option>
+                            <option value="advanced">Avancé</option>
+                            <option value="elite">Élite</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ftp">FTP actuel (watts)</label>
+                        <input type="number" id="ftp" name="ftp" value="320" min="100" max="600">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="model">Modèle de périodisation</label>
+                        <select id="model" name="model">
+                            <option value="polarized" selected>Polarisé (Seiler)</option>
+                            <option value="pyramidal">Pyramidal</option>
+                            <option value="traditional">Traditionnel</option>
+                            <option value="block">Block (Issurin)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="events">Événements cibles (optionnel)</label>
+                        <textarea id="events" name="events" placeholder="Ex: Course FFC:2025-09-15, Gran Fondo:2025-10-20" rows="3"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">
+                        🚀 Générer le Plan
+                    </button>
+                </form>
+            </div>
+
+            <!-- Visualisation du Plan -->
+            <div class="card">
+                <h2 class="card-title">
+                    <span class="icon">📊</span>
+                    Vue d'Ensemble
+                </h2>
+                
+                <div class="alert">
+                    <strong>💡 Conseil :</strong> Utilisez le formulaire ci-contre pour générer votre plan personnalisé basé sur les dernières recherches en science du sport.
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalWeeks">12</div>
+                        <div class="stat-label">Semaines</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="ftpGain">+25</div>
+                        <div class="stat-label">Watts (projection)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="avgTSS">350</div>
+                        <div class="stat-label">TSS moyen</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="hoursWeek">8-12</div>
+                        <div class="stat-label">Heures/semaine</div>
+                    </div>
+                </div>
+                
+                <div class="phase-timeline">
+                    <div class="phase-item active" title="Phase de Base">1</div>
+                    <div class="phase-item" title="Phase de Développement">2</div>
+                    <div class="phase-item" title="Phase de Pic">3</div>
+                    <div class="phase-item" title="Phase de Récupération">4</div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress" id="planProgress" style="width: 25%"></div>
+                </div>
+                
+                <div class="results" id="planResults" style="display: none;">
+                    <h3>🎯 Plan Généré</h3>
+                    <div id="planDetails"></div>
+                </div>
+            </div>
+
+            <!-- Calendrier d'Entraînement -->
+            <div class="card full-width">
+                <h2 class="card-title">
+                    <span class="icon">🗓️</span>
+                    Calendrier d'Entraînement
+                </h2>
+                
+                <div class="form-group">
+                    <label for="weekSelect">Sélectionner une semaine</label>
+                    <select id="weekSelect">
+                        <option value="1">Semaine 1 - Phase de Base</option>
+                        <option value="2">Semaine 2 - Phase de Base</option>
+                        <option value="3">Semaine 3 - Phase de Base</option>
+                        <option value="4">Semaine 4 - Récupération</option>
+                    </select>
+                </div>
+                
+                <div class="calendar-grid">
+                    <div class="calendar-day">
+                        <strong>Lun</strong><br>
+                        <span>Repos</span>
+                    </div>
+                    <div class="calendar-day workout">
+                        <strong>Mar</strong><br>
+                        <span>Endurance Z2</span><br>
+                        <small>90min</small>
+                    </div>
+                    <div class="calendar-day recovery">
+                        <strong>Mer</strong><br>
+                        <span>Récupération</span><br>
+                        <small>45min</small>
+                    </div>
+                    <div class="calendar-day intense">
+                        <strong>Jeu</strong><br>
+                        <span>Threshold</span><br>
+                        <small>2x20min</small>
+                    </div>
+                    <div class="calendar-day">
+                        <strong>Ven</strong><br>
+                        <span>Repos</span>
+                    </div>
+                    <div class="calendar-day workout">
+                        <strong>Sam</strong><br>
+                        <span>Endurance</span><br>
+                        <small>120min</small>
+                    </div>
+                    <div class="calendar-day recovery">
+                        <strong>Dim</strong><br>
+                        <span>Récupération</span><br>
+                        <small>60min</small>
+                    </div>
+                </div>
+                
+                <div class="metric">
+                    <span>TSS Semaine:</span>
+                    <span class="metric-value">287</span>
+                </div>
+                <div class="metric">
+                    <span>Temps Total:</span>
+                    <span class="metric-value">7h 30min</span>
+                </div>
+                <div class="metric">
+                    <span>Intensité:</span>
+                    <span class="metric-value">Modérée</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration par défaut
+        const defaultConfig = {
+            duration: 12,
+            level: 'intermediate',
+            ftp: 320,
+            model: 'polarized'
+        };
+
+        // Simuler les données de plan
+        const planData = {
+            polarized: {
+                description: "Modèle polarisé basé sur les recherches de Stephen Seiler",
+                phases: ["Base Aérobie", "Développement", "Pic", "Récupération"],
+                distribution: "80% facile, 20% intense",
+                ftpGain: 25,
+                avgTSS: 350
+            },
+            pyramidal: {
+                description: "Distribution pyramidale classique",
+                phases: ["Base", "Build", "Peak", "Recovery"],
+                distribution: "60% Z1-Z2, 25% Z3, 15% Z4-Z5",
+                ftpGain: 20,
+                avgTSS: 375
+            },
+            traditional: {
+                description: "Périodisation traditionnelle",
+                phases: ["Général", "Spécifique", "Compétition", "Transition"],
+                distribution: "Volume puis intensité",
+                ftpGain: 18,
+                avgTSS: 320
+            },
+            block: {
+                description: "Block periodization d'Issurin",
+                phases: ["Accumulation", "Intensification", "Réalisation", "Récupération"],
+                distribution: "Blocs spécialisés",
+                ftpGain: 22,
+                avgTSS: 380
+            }
+        };
+
+        // Mise à jour des statistiques
+        function updateStats(config) {
+            const model = planData[config.model];
+            
+            document.getElementById('totalWeeks').textContent = config.duration;
+            document.getElementById('ftpGain').textContent = `+${Math.round(model.ftpGain * (config.duration / 12))}`;
+            document.getElementById('avgTSS').textContent = Math.round(model.avgTSS * (config.level === 'beginner' ? 0.8 : config.level === 'advanced' ? 1.2 : 1.0));
+            
+            const hours = config.level === 'beginner' ? '6-8' : config.level === 'advanced' ? '10-15' : '8-12';
+            document.getElementById('hoursWeek').textContent = hours;
+            
+            // Mise à jour de la barre de progression
+            const progress = Math.min(100, (config.duration / 20) * 100);
+            document.getElementById('planProgress').style.width = progress + '%';
+        }
+
+        // Générer le plan
+        function generatePlan(config) {
+            const model = planData[config.model];
+            const projectedFTP = config.ftp + Math.round(model.ftpGain * (config.duration / 12));
+            
+            const planDetails = `
+                <div class="metric">
+                    <span>Modèle:</span>
+                    <span class="metric-value">${config.model.charAt(0).toUpperCase() + config.model.slice(1)}</span>
+                </div>
+                <div class="metric">
+                    <span>FTP Projection:</span>
+                    <span class="metric-value">${config.ftp}W → ${projectedFTP}W</span>
+                </div>
+                <div class="metric">
+                    <span>Distribution:</span>
+                    <span class="metric-value">${model.distribution}</span>
+                </div>
+                <div class="metric">
+                    <span>Phases:</span>
+                    <span class="metric-value">${model.phases.join(' → ')}</span>
+                </div>
+                <p style="margin-top: 15px; font-style: italic; color: #7f8c8d;">
+                    ${model.description}
+                </p>
+            `;
+            
+            document.getElementById('planDetails').innerHTML = planDetails;
+            document.getElementById('planResults').style.display = 'block';
+            
+            // Animation de la timeline
+            animateTimeline();
+        }
+
+        // Animation de la timeline
+        function animateTimeline() {
+            const phases = document.querySelectorAll('.phase-item');
+            phases.forEach((phase, index) => {
+                setTimeout(() => {
+                    phase.classList.add('active');
+                    if (index > 0) {
+                        phases[index - 1].classList.remove('active');
+                        phases[index - 1].classList.add('completed');
+                    }
+                }, index * 500);
+            });
+        }
+
+        // Gestion du formulaire
+        document.getElementById('planForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const config = {
+                duration: parseInt(document.getElementById('duration').value),
+                level: document.getElementById('level').value,
+                ftp: parseInt(document.getElementById('ftp').value),
+                model: document.getElementById('model').value,
+                events: document.getElementById('events').value
+            };
+            
+            // Simulation d'un délai de génération
+            const btn = document.querySelector('.btn');
+            btn.innerHTML = '⏳ Génération en cours...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                generatePlan(config);
+                updateStats(config);
+                
+                btn.innerHTML = '✅ Plan Généré !';
+                setTimeout(() => {
+                    btn.innerHTML = '🚀 Générer le Plan';
+                    btn.disabled = false;
+                }, 2000);
+            }, 1500);
+        });
+
+        // Gestion des changements de formulaire
+        document.querySelectorAll('#planForm select, #planForm input').forEach(element => {
+            element.addEventListener('change', function() {
+                const config = {
+                    duration: parseInt(document.getElementById('duration').value),
+                    level: document.getElementById('level').value,
+                    ftp: parseInt(document.getElementById('ftp').value),
+                    model: document.getElementById('model').value
+                };
+                updateStats(config);
+            });
+        });
+
+        // Génération du calendrier dynamique
+        function generateCalendar(weekNumber) {
+            const workouts = {
+                1: [
+                    { day: 'Lun', type: 'rest', name: 'Repos' },
+                    { day: 'Mar', type: 'workout', name: 'Endurance Z2', duration: '90min' },
+                    { day: 'Mer', type: 'recovery', name: 'Récupération', duration: '45min' },
+                    { day: 'Jeu', type: 'intense', name: 'Threshold', duration: '2x20min' },
+                    { day: 'Ven', type: 'rest', name: 'Repos' },
+                    { day: 'Sam', type: 'workout', name: 'Endurance', duration: '120min' },
+                    { day: 'Dim', type: 'recovery', name: 'Récupération', duration: '60min' }
+                ]
+            };
+            
+            const calendar = document.querySelector('.calendar-grid');
+            const weekWorkouts = workouts[weekNumber] || workouts[1];
+            
+            calendar.innerHTML = weekWorkouts.map(workout => `
+                <div class="calendar-day ${workout.type}">
+                    <strong>${workout.day}</strong><br>
+                    <span>${workout.name}</span>
+                    ${workout.duration ? `<br><small>${workout.duration}</small>` : ''}
+                </div>
+            `).join('');
+        }
+
+        // Gestion du sélecteur de semaine
+        document.getElementById('weekSelect').addEventListener('change', function() {
+            generateCalendar(parseInt(this.value));
+        });
+
+        // Initialisation
+        updateStats(defaultConfig);
+        generateCalendar(1);
+    </script>
+</body>
+</html>

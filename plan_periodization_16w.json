@@ -1,0 +1,1069 @@
+{
+  "athlete_id": "cyclist_001",
+  "start_date": "2025-07-18T11:04:44.094393",
+  "end_date": "2025-11-07T11:04:44.094393",
+  "target_events": [
+    {
+      "name": "Course FFC Open 3",
+      "date": "2025-09-15",
+      "type": "road_race",
+      "priority": "A"
+    }
+  ],
+  "periodization_model": "polarized",
+  "weekly_plans": [
+    {
+      "week_number": 1,
+      "phase": "base",
+      "training_load": {
+        "tss_target": 286.65,
+        "hours_target": 4.7775,
+        "intensity_distribution": {
+          "Z1": 0.8999999999999999,
+          "Z2": 0.05500000000000001,
+          "Z3": 0.04000000000000001,
+          "Z4": 0.03,
+          "Z5": 0.05
+        },
+        "key_workouts": [
+          "Endurance 90-120min",
+          "Tempo 2x20min",
+          "Endurance 60min + Force"
+        ],
+        "volume_emphasis": 0.8,
+        "intensity_emphasis": 0.2
+      },
+      "workouts": {
+        "monday": {
+          "type": "endurance",
+          "duration": 60,
+          "intensity": "Z2"
+        },
+        "tuesday": {
+          "type": "threshold",
+          "duration": 90,
+          "intensity": "Z4"
+        },
+        "wednesday": {
+          "type": "recovery",
+          "duration": 45,
+          "intensity": "Z1"
+        },
+        "thursday": {
+          "type": "endurance",
+          "duration": 90,
+          "intensity": "Z2"
+        },
+        "friday": {
+          "type": "rest"
+        },
+        "saturday": {
+          "type": "endurance",
+          "duration": 120,
+          "intensity": "Z2"
+        },
+        "sunday": {
+          "type": "recovery",
+          "duration": 60,
+          "intensity": "Z1"
+        }
+      },
+      "focus": "Développement de la base aérobie",
+      "rationale": "Développement des adaptations cardiovasculaires et mitochondriales par un volume élevé en Zone 2",
+      "adaptations_expected": [
+        "Augmentation de la densité mitochondriale",
+        "Amélioration de l'efficacité cardiaque",
+        "Optimisation du métabolisme des graisses",
+        "Renforcement des tissus conjonctifs"
+      ],
+      "recovery_emphasis": 0.3
+    },
+    {
+      "week_number": 2,
+      "phase": "base",
+      "training_load": {
+        "tss_target": 327.6,
+        "hours_target": 5.46,
+        "intensity_distribution": {
+          "Z1": 0.8999999999999999,
+          "Z2": 0.05500000000000001,
+          "Z3": 0.04000000000000001,
+          "Z4": 0.03,
+          "Z5": 0.05
+        },
+        "key_workouts": [
+          "Endurance 90-120min",
+          "Tempo 2x20min",
+          "Endurance 60min + Force"
+        ],
+        "volume_emphasis": 0.8,
+        "intensity_emphasis": 0.2
+      },
+      "workouts": {
+        "monday": {
+          "type": "endurance",
+          "duration": 60,
+          "intensity": "Z2"
+        },
+        "tuesday": {
+          "type": "threshold",
+          "duration": 90,
+          "intensity": "Z4"
+        },
+        "wednesday": {
+          "type": "recovery",
+          "duration": 45,
+          "intensity": "Z1"
+        },
+        "thursday": {
+          "type": "endurance",
+          "duration": 90,
+          "intensity": "Z2"
+        },
+        "friday": {
+          "type": "rest"
+        },
+        "saturday": {
+          "type": "endurance",
+          "duration": 120,
+          "intensity": "Z2"
+        },
+        "sunday": {
+          "type": "recovery",
+          "duration": 60,
+          "intensity": "Z1"
+        }
+      },
+      "focus": "Développement de la base aérobie",
+      "rationale": "Développement des adaptations cardiovasculaires et mitochondriales par un volume élevé en Zone 2",
+      "adaptations_expected": [
+        "Augmentation de la densité mitochondriale",
+        "Amélioration de l'efficacité cardiaque",
+        "Optimisation du métabolisme des graisses",
+        "Renforcement des tissus conjonctifs"
+      ],
+      "recovery_emphasis": 0.3
+    },
+    {
+      "week_number": 3,
+      "phase": "base",
+      "training_load": {
+        "tss_target": 368.55,
+        "hours_target": 6.1425,
+        "intensity_distribution": {
+          "Z1": 0.8999999999999999,
+          "Z2": 0.05500000000000001,
+          "Z3": 0.04000000000000001,
+          "Z4": 0.03,
+          "Z5": 0.05
+        },
+        "key_workouts": [
+          "Endurance 90-120min",
+          "Tempo 2x20min",
+          "Endurance 60min + Force"
+        ],
+        "volume_emphasis": 0.8,
+        "intensity_emphasis": 0.2
+      },
+      "workouts": {
+        "monday": {
+          "type": "endurance",
+          "duration": 60,
+          "intensity": "Z2"
+        },
+        "tuesday": {
+          "type": "threshold",
+          "duration": 90,
+          "intensity": "Z4"
+        },
+        "wednesday": {
+          "type": "recovery",
+          "duration": 45,
+          "intensity": "Z1"
+        },
+        "thursday": {
+          "type": "endurance",
+          "duration": 90,
+          "intensity": "Z2"
+        },
+        "friday": {
+          "type": "rest"
+        },
+        "saturday": {
+          "type": "endurance",
+          "duration": 120,
+          "intensity": "Z2"
+        },
+        "sunday": {
+          "type": "recovery",
+          "duration": 60,
+          "intensity": "Z1"
+        }
+      },
+      "focus": "Développement de la base aérobie",
+      "rationale": "Développement des adaptations cardiovasculaires et mitochondriales par un volume élevé en Zone 2",
+      "adaptations_expected": [
+        "Augmentation de la densité mitochondriale",
+        "Amélioration de l'efficacité cardiaque",
+        "Optimisation du métabolisme des graisses",
+        "Renforcement des tissus conjonctifs"
+      ],
+      "recovery_emphasis": 0.3
+    },
+    {
+      "week_number": 4,
+      "phase": "base",
+      "training_load": {
+        "tss_target": 245.7,
+        "hours_target": 4.095,
+        "intensity_distribution": {
+          "Z1": 0.8999999999999999,
+          "Z2": 0.05500000000000001,
+          "Z3": 0.04000000000000001,
+          "Z4": 0.03,
+          "Z5": 0.05
+        },
+        "key_workouts": [
+          "Endurance 90-120min",
+          "Tempo 2x20min",
+          "Endurance 60min + Force"
+        ],
+        "volume_emphasis": 0.8,
+        "intensity_emphasis": 0.2
+      },
+      "workouts": {
+        "monday": {
+          "type": "endurance",
+          "duration": 60,
+          "intensity": "Z2"
+        },
+        "tuesday": {
+          "type": "threshold",
+          "duration": 90,
+          "intensity": "Z4"
+        },
+        "wednesday": {
+          "type": "recovery",
+          "duration": 45,
+          "intensity": "Z1"
+        },
+        "thursday": {
+          "type": "endurance",
+          "duration": 90,
+          "intensity": "Z2"
+        },
+        "friday": {
+          "type": "rest"
+        },
+        "saturday": {
+          "type": "endurance",
+          "duration": 120,
+          "intensity": "Z2"
+        },
+        "sunday": {
+          "type": "recovery",
+          "duration": 60,
+          "intensity": "Z1"
+        }
+      },
+      "focus": "Développement de la base aérobie",
+      "rationale": "Développement des adaptations cardiovasculaires et mitochondriales par un volume élevé en Zone 2",
+      "adaptations_expected": [
+        "Augmentation de la densité mitochondriale",
+        "Amélioration de l'efficacité cardiaque",
+        "Optimisation du métabolisme des graisses",
+        "Renforcement des tissus conjonctifs"
+      ],
+      "recovery_emphasis": 0.44999999999999996
+    },
+    {
+      "week_number": 5,
+      "phase": "base",
+      "training_load": {
+        "tss_target": 286.65,
+        "hours_target": 4.7775,
+        "intensity_distribution": {
+          "Z1": 0.8999999999999999,
+          "Z2": 0.05500000000000001,
+          "Z3": 0.04000000000000001,
+          "Z4": 0.03,
+          "Z5": 0.05
+        },
+        "key_workouts": [
+          "Endurance 90-120min",
+          "Tempo 2x20min",
+          "Endurance 60min + Force"
+        ],
+        "volume_emphasis": 0.8,
+        "intensity_emphasis": 0.2
+      },
+      "workouts": {
+        "monday": {
+          "type": "endurance",
+          "duration": 60,
+          "intensity": "Z2"
+        },
+        "tuesday": {
+          "type": "threshold",
+          "duration": 90,
+          "intensity": "Z4"
+        },
+        "wednesday": {
+          "type": "recovery",
+          "duration": 45,
+          "intensity": "Z1"
+        },
+        "thursday": {
+          "type": "endurance",
+          "duration": 90,
+          "intensity": "Z2"
+        },
+        "friday": {
+          "type": "rest"
+        },
+        "saturday": {
+          "type": "endurance",
+          "duration": 120,
+          "intensity": "Z2"
+        },
+        "sunday": {
+          "type": "recovery",
+          "duration": 60,
+          "intensity": "Z1"
+        }
+      },
+      "focus": "Développement de la base aérobie",
+      "rationale": "Développement des adaptations cardiovasculaires et mitochondriales par un volume élevé en Zone 2",
+      "adaptations_expected": [
+        "Augmentation de la densité mitochondriale",
+        "Amélioration de l'efficacité cardiaque",
+        "Optimisation du métabolisme des graisses",
+        "Renforcement des tissus conjonctifs"
+      ],
+      "recovery_emphasis": 0.3
+    },
+    {
+      "week_number": 6,
+      "phase": "build",
+      "training_load": {
+        "tss_target": 400.4000000000001,
+        "hours_target": 6.673333333333335,
+        "intensity_distribution": {
+          "Z1": 0.675,
+          "Z2": 0.045000000000000005,
+          "Z3": 0.06,
+          "Z4": 0.065,
+          "Z5": 0.15000000000000002
+        },
+        "key_workouts": [
+          "Threshold 2x20min",
+          "VO2max 5x4min",
+          "Endurance 90min"
+        ],
+        "volume_emphasis": 0.6,
+        "intensity_emphasis": 0.7
+      },
+      "workouts": {
+        "monday": {
+          "type": "recovery",
+          "duration": 45,
+          "intensity": "Z1"
+        },
+        "tuesday": {
+          "type": "vo2max",
+          "duration": 75,
+          "intensity": "Z5"
+        },
+        "wednesday": {
+          "type": "endurance",
+          "duration": 60,
+          "intensity": "Z2"
+        },
+        "thursday": {
+          "type": "threshold",
+          "duration": 90,
+          "intensity": "Z4"
+        },
+        "friday": {
+          "type": "rest"
+        },
+        "saturday": {
+          "type": "endurance",
+          "duration": 90,
+          "intensity": "Z2"
+        },
+        "sunday": {
+          "type": "recovery",
+          "duration": 60,
+          "intensity": "Z1"
+        }
+      },
+      "focus": "Développement de la puissance spécifique",
+      "rationale": "Amélioration de la puissance spécifique et de la tolérance lactique par des intervalles ciblés",
+      "adaptations_expected": [
+        "Amélioration de la VO2max",
+        "Augmentation de la puissance au seuil",
+        "Amélioration de la tolérance lactique",
+        "Développement de la force spécifique"
+      ],
+      "recovery_emphasis": 0.4
+    },
+    {
+      "week_number": 7,
+      "phase": "build",
+      "training_load": {
+        "tss_target": 450.45000000000005,
+        "hours_target": 7.507500000000001,
+        "intensity_distribution": {
+          "Z1": 0.675,
+          "Z2": 0.045000000000000005,
+          "Z3": 0.06,
+          "Z4": 0.065,
+          "Z5": 0.15000000000000002
+        },
+        "key_workouts": [
+          "Threshold 2x20min",
+          "VO2max 5x4min",
+          "Endurance 90min"
+        ],
+        "volume_emphasis": 0.6,
+        "intensity_emphasis": 0.7
+      },
+      "workouts": {
+        "monday": {
+          "type": "recovery",
+          "duration": 45,
+          "intensity": "Z1"
+        },
+        "tuesday": {
+          "type": "vo2max",
+          "duration": 75,
+          "intensity": "Z5"
+        },
+        "wednesday": {
+          "type": "endurance",
+          "duration": 60,
+          "intensity": "Z2"
+        },
+        "thursday": {
+          "type": "threshold",
+          "duration": 90,
+          "intensity": "Z4"
+        },
+        "friday": {
+          "type": "rest"
+        },
+        "saturday": {
+          "type": "endurance",
+          "duration": 90,
+          "intensity": "Z2"
+        },
+        "sunday": {
+          "type": "recovery",
+          "duration": 60,
+          "intensity": "Z1"
+        }
+      },
+      "focus": "Développement de la puissance spécifique",
+      "rationale": "Amélioration de la puissance spécifique et de la tolérance lactique par des intervalles ciblés",
+      "adaptations_expected": [
+        "Amélioration de la VO2max",
+        "Augmentation de la puissance au seuil",
+        "Amélioration de la tolérance lactique",
+        "Développement de la force spécifique"
+      ],
+      "recovery_emphasis": 0.4
+    },
+    {
+      "week_number": 8,
+      "phase": "build",
+      "training_load": {
+        "tss_target": 500.50000000000006,
+        "hours_target": 8.341666666666667,
+        "intensity_distribution": {
+          "Z1": 0.675,
+          "Z2": 0.045000000000000005,
+          "Z3": 0.06,
+          "Z4": 0.065,
+          "Z5": 0.15000000000000002
+        },
+        "key_workouts": [
+          "Threshold 2x20min",
+          "VO2max 5x4min",
+          "Endurance 90min"
+        ],
+        "volume_emphasis": 0.6,
+        "intensity_emphasis": 0.7
+      },
+      "workouts": {
+        "monday": {
+          "type": "recovery",
+          "duration": 45,
+          "intensity": "Z1"
+        },
+        "tuesday": {
+          "type": "vo2max",
+          "duration": 75,
+          "intensity": "Z5"
+        },
+        "wednesday": {
+          "type": "endurance",
+          "duration": 60,
+          "intensity": "Z2"
+        },
+        "thursday": {
+          "type": "threshold",
+          "duration": 90,
+          "intensity": "Z4"
+        },
+        "friday": {
+          "type": "rest"
+        },
+        "saturday": {
+          "type": "endurance",
+          "duration": 90,
+          "intensity": "Z2"
+        },
+        "sunday": {
+          "type": "recovery",
+          "duration": 60,
+          "intensity": "Z1"
+        }
+      },
+      "focus": "Développement de la puissance spécifique",
+      "rationale": "Amélioration de la puissance spécifique et de la tolérance lactique par des intervalles ciblés",
+      "adaptations_expected": [
+        "Amélioration de la VO2max",
+        "Augmentation de la puissance au seuil",
+        "Amélioration de la tolérance lactique",
+        "Développement de la force spécifique"
+      ],
+      "recovery_emphasis": 0.4
+    },
+    {
+      "week_number": 9,
+      "phase": "build",
+      "training_load": {
+        "tss_target": 350.35,
+        "hours_target": 5.839166666666667,
+        "intensity_distribution": {
+          "Z1": 0.675,
+          "Z2": 0.045000000000000005,
+          "Z3": 0.06,
+          "Z4": 0.065,
+          "Z5": 0.15000000000000002
+        },
+        "key_workouts": [
+          "Threshold 2x20min",
+          "VO2max 5x4min",
+          "Endurance 90min"
+        ],
+        "volume_emphasis": 0.6,
+        "intensity_emphasis": 0.7
+      },
+      "workouts": {
+        "monday": {
+          "type": "recovery",
+          "duration": 45,
+          "intensity": "Z1"
+        },
+        "tuesday": {
+          "type": "vo2max",
+          "duration": 75,
+          "intensity": "Z5"
+        },
+        "wednesday": {
+          "type": "endurance",
+          "duration": 60,
+          "intensity": "Z2"
+        },
+        "thursday": {
+          "type": "threshold",
+          "duration": 90,
+          "intensity": "Z4"
+        },
+        "friday": {
+          "type": "rest"
+        },
+        "saturday": {
+          "type": "endurance",
+          "duration": 90,
+          "intensity": "Z2"
+        },
+        "sunday": {
+          "type": "recovery",
+          "duration": 60,
+          "intensity": "Z1"
+        }
+      },
+      "focus": "Développement de la puissance spécifique",
+      "rationale": "Amélioration de la puissance spécifique et de la tolérance lactique par des intervalles ciblés",
+      "adaptations_expected": [
+        "Amélioration de la VO2max",
+        "Augmentation de la puissance au seuil",
+        "Amélioration de la tolérance lactique",
+        "Développement de la force spécifique"
+      ],
+      "recovery_emphasis": 0.6000000000000001
+    },
+    {
+      "week_number": 10,
+      "phase": "build",
+      "training_load": {
+        "tss_target": 400.4000000000001,
+        "hours_target": 6.673333333333335,
+        "intensity_distribution": {
+          "Z1": 0.675,
+          "Z2": 0.045000000000000005,
+          "Z3": 0.06,
+          "Z4": 0.065,
+          "Z5": 0.15000000000000002
+        },
+        "key_workouts": [
+          "Threshold 2x20min",
+          "VO2max 5x4min",
+          "Endurance 90min"
+        ],
+        "volume_emphasis": 0.6,
+        "intensity_emphasis": 0.7
+      },
+      "workouts": {
+        "monday": {
+          "type": "recovery",
+          "duration": 45,
+          "intensity": "Z1"
+        },
+        "tuesday": {
+          "type": "vo2max",
+          "duration": 75,
+          "intensity": "Z5"
+        },
+        "wednesday": {
+          "type": "endurance",
+          "duration": 60,
+          "intensity": "Z2"
+        },
+        "thursday": {
+          "type": "threshold",
+          "duration": 90,
+          "intensity": "Z4"
+        },
+        "friday": {
+          "type": "rest"
+        },
+        "saturday": {
+          "type": "endurance",
+          "duration": 90,
+          "intensity": "Z2"
+        },
+        "sunday": {
+          "type": "recovery",
+          "duration": 60,
+          "intensity": "Z1"
+        }
+      },
+      "focus": "Développement de la puissance spécifique",
+      "rationale": "Amélioration de la puissance spécifique et de la tolérance lactique par des intervalles ciblés",
+      "adaptations_expected": [
+        "Amélioration de la VO2max",
+        "Augmentation de la puissance au seuil",
+        "Amélioration de la tolérance lactique",
+        "Développement de la force spécifique"
+      ],
+      "recovery_emphasis": 0.4
+    },
+    {
+      "week_number": 11,
+      "phase": "build",
+      "training_load": {
+        "tss_target": 450.45000000000005,
+        "hours_target": 7.507500000000001,
+        "intensity_distribution": {
+          "Z1": 0.675,
+          "Z2": 0.045000000000000005,
+          "Z3": 0.06,
+          "Z4": 0.065,
+          "Z5": 0.15000000000000002
+        },
+        "key_workouts": [
+          "Threshold 2x20min",
+          "VO2max 5x4min",
+          "Endurance 90min"
+        ],
+        "volume_emphasis": 0.6,
+        "intensity_emphasis": 0.7
+      },
+      "workouts": {
+        "monday": {
+          "type": "recovery",
+          "duration": 45,
+          "intensity": "Z1"
+        },
+        "tuesday": {
+          "type": "vo2max",
+          "duration": 75,
+          "intensity": "Z5"
+        },
+        "wednesday": {
+          "type": "endurance",
+          "duration": 60,
+          "intensity": "Z2"
+        },
+        "thursday": {
+          "type": "threshold",
+          "duration": 90,
+          "intensity": "Z4"
+        },
+        "friday": {
+          "type": "rest"
+        },
+        "saturday": {
+          "type": "endurance",
+          "duration": 90,
+          "intensity": "Z2"
+        },
+        "sunday": {
+          "type": "recovery",
+          "duration": 60,
+          "intensity": "Z1"
+        }
+      },
+      "focus": "Développement de la puissance spécifique",
+      "rationale": "Amélioration de la puissance spécifique et de la tolérance lactique par des intervalles ciblés",
+      "adaptations_expected": [
+        "Amélioration de la VO2max",
+        "Augmentation de la puissance au seuil",
+        "Amélioration de la tolérance lactique",
+        "Développement de la force spécifique"
+      ],
+      "recovery_emphasis": 0.4
+    },
+    {
+      "week_number": 12,
+      "phase": "build",
+      "training_load": {
+        "tss_target": 500.50000000000006,
+        "hours_target": 8.341666666666667,
+        "intensity_distribution": {
+          "Z1": 0.675,
+          "Z2": 0.045000000000000005,
+          "Z3": 0.06,
+          "Z4": 0.065,
+          "Z5": 0.15000000000000002
+        },
+        "key_workouts": [
+          "Threshold 2x20min",
+          "VO2max 5x4min",
+          "Endurance 90min"
+        ],
+        "volume_emphasis": 0.6,
+        "intensity_emphasis": 0.7
+      },
+      "workouts": {
+        "monday": {
+          "type": "recovery",
+          "duration": 45,
+          "intensity": "Z1"
+        },
+        "tuesday": {
+          "type": "vo2max",
+          "duration": 75,
+          "intensity": "Z5"
+        },
+        "wednesday": {
+          "type": "endurance",
+          "duration": 60,
+          "intensity": "Z2"
+        },
+        "thursday": {
+          "type": "threshold",
+          "duration": 90,
+          "intensity": "Z4"
+        },
+        "friday": {
+          "type": "rest"
+        },
+        "saturday": {
+          "type": "endurance",
+          "duration": 90,
+          "intensity": "Z2"
+        },
+        "sunday": {
+          "type": "recovery",
+          "duration": 60,
+          "intensity": "Z1"
+        }
+      },
+      "focus": "Développement de la puissance spécifique",
+      "rationale": "Amélioration de la puissance spécifique et de la tolérance lactique par des intervalles ciblés",
+      "adaptations_expected": [
+        "Amélioration de la VO2max",
+        "Augmentation de la puissance au seuil",
+        "Amélioration de la tolérance lactique",
+        "Développement de la force spécifique"
+      ],
+      "recovery_emphasis": 0.4
+    },
+    {
+      "week_number": 13,
+      "phase": "build",
+      "training_load": {
+        "tss_target": 350.35,
+        "hours_target": 5.839166666666667,
+        "intensity_distribution": {
+          "Z1": 0.675,
+          "Z2": 0.045000000000000005,
+          "Z3": 0.06,
+          "Z4": 0.065,
+          "Z5": 0.15000000000000002
+        },
+        "key_workouts": [
+          "Threshold 2x20min",
+          "VO2max 5x4min",
+          "Endurance 90min"
+        ],
+        "volume_emphasis": 0.6,
+        "intensity_emphasis": 0.7
+      },
+      "workouts": {
+        "monday": {
+          "type": "recovery",
+          "duration": 45,
+          "intensity": "Z1"
+        },
+        "tuesday": {
+          "type": "vo2max",
+          "duration": 75,
+          "intensity": "Z5"
+        },
+        "wednesday": {
+          "type": "endurance",
+          "duration": 60,
+          "intensity": "Z2"
+        },
+        "thursday": {
+          "type": "threshold",
+          "duration": 90,
+          "intensity": "Z4"
+        },
+        "friday": {
+          "type": "rest"
+        },
+        "saturday": {
+          "type": "endurance",
+          "duration": 90,
+          "intensity": "Z2"
+        },
+        "sunday": {
+          "type": "recovery",
+          "duration": 60,
+          "intensity": "Z1"
+        }
+      },
+      "focus": "Développement de la puissance spécifique",
+      "rationale": "Amélioration de la puissance spécifique et de la tolérance lactique par des intervalles ciblés",
+      "adaptations_expected": [
+        "Amélioration de la VO2max",
+        "Augmentation de la puissance au seuil",
+        "Amélioration de la tolérance lactique",
+        "Développement de la force spécifique"
+      ],
+      "recovery_emphasis": 0.6000000000000001
+    },
+    {
+      "week_number": 14,
+      "phase": "peak",
+      "training_load": {
+        "tss_target": 409.5,
+        "hours_target": 6.825,
+        "intensity_distribution": {
+          "Z1": 0.8250000000000001,
+          "Z2": 0.04000000000000001,
+          "Z3": 0.045000000000000005,
+          "Z4": 0.06,
+          "Z5": 0.18000000000000002
+        },
+        "key_workouts": [
+          "VO2max 6x3min",
+          "Anaerobic 5x2min",
+          "Openers 3x1min"
+        ],
+        "volume_emphasis": 0.3,
+        "intensity_emphasis": 0.8
+      },
+      "workouts": {
+        "monday": {
+          "type": "recovery",
+          "duration": 45,
+          "intensity": "Z1"
+        },
+        "tuesday": {
+          "type": "vo2max",
+          "duration": 60,
+          "intensity": "Z5"
+        },
+        "wednesday": {
+          "type": "rest"
+        },
+        "thursday": {
+          "type": "openers",
+          "duration": 45,
+          "intensity": "Z6"
+        },
+        "friday": {
+          "type": "rest"
+        },
+        "saturday": {
+          "type": "endurance",
+          "duration": 60,
+          "intensity": "Z2"
+        },
+        "sunday": {
+          "type": "recovery",
+          "duration": 45,
+          "intensity": "Z1"
+        }
+      },
+      "focus": "Optimisation de la forme et récupération",
+      "rationale": "Optimisation neuromusculaire et récupération avant compétition",
+      "adaptations_expected": [
+        "Optimisation neuromusculaire",
+        "Amélioration de l'économie de mouvement",
+        "Récupération des systèmes énergétiques",
+        "Affûtage psychologique"
+      ],
+      "recovery_emphasis": 0.6
+    },
+    {
+      "week_number": 15,
+      "phase": "peak",
+      "training_load": {
+        "tss_target": 455.0,
+        "hours_target": 7.583333333333333,
+        "intensity_distribution": {
+          "Z1": 0.8250000000000001,
+          "Z2": 0.04000000000000001,
+          "Z3": 0.045000000000000005,
+          "Z4": 0.06,
+          "Z5": 0.18000000000000002
+        },
+        "key_workouts": [
+          "VO2max 6x3min",
+          "Anaerobic 5x2min",
+          "Openers 3x1min"
+        ],
+        "volume_emphasis": 0.3,
+        "intensity_emphasis": 0.8
+      },
+      "workouts": {
+        "monday": {
+          "type": "recovery",
+          "duration": 45,
+          "intensity": "Z1"
+        },
+        "tuesday": {
+          "type": "vo2max",
+          "duration": 60,
+          "intensity": "Z5"
+        },
+        "wednesday": {
+          "type": "rest"
+        },
+        "thursday": {
+          "type": "openers",
+          "duration": 45,
+          "intensity": "Z6"
+        },
+        "friday": {
+          "type": "rest"
+        },
+        "saturday": {
+          "type": "endurance",
+          "duration": 60,
+          "intensity": "Z2"
+        },
+        "sunday": {
+          "type": "recovery",
+          "duration": 45,
+          "intensity": "Z1"
+        }
+      },
+      "focus": "Optimisation de la forme et récupération",
+      "rationale": "Optimisation neuromusculaire et récupération avant compétition",
+      "adaptations_expected": [
+        "Optimisation neuromusculaire",
+        "Amélioration de l'économie de mouvement",
+        "Récupération des systèmes énergétiques",
+        "Affûtage psychologique"
+      ],
+      "recovery_emphasis": 0.6
+    },
+    {
+      "week_number": 16,
+      "phase": "peak",
+      "training_load": {
+        "tss_target": 364.0,
+        "hours_target": 6.066666666666666,
+        "intensity_distribution": {
+          "Z1": 0.8250000000000001,
+          "Z2": 0.04000000000000001,
+          "Z3": 0.045000000000000005,
+          "Z4": 0.06,
+          "Z5": 0.18000000000000002
+        },
+        "key_workouts": [
+          "VO2max 6x3min",
+          "Anaerobic 5x2min",
+          "Openers 3x1min"
+        ],
+        "volume_emphasis": 0.3,
+        "intensity_emphasis": 0.8
+      },
+      "workouts": {
+        "monday": {
+          "type": "recovery",
+          "duration": 45,
+          "intensity": "Z1"
+        },
+        "tuesday": {
+          "type": "vo2max",
+          "duration": 60,
+          "intensity": "Z5"
+        },
+        "wednesday": {
+          "type": "rest"
+        },
+        "thursday": {
+          "type": "openers",
+          "duration": 45,
+          "intensity": "Z6"
+        },
+        "friday": {
+          "type": "rest"
+        },
+        "saturday": {
+          "type": "endurance",
+          "duration": 60,
+          "intensity": "Z2"
+        },
+        "sunday": {
+          "type": "recovery",
+          "duration": 45,
+          "intensity": "Z1"
+        }
+      },
+      "focus": "Optimisation de la forme et récupération",
+      "rationale": "Optimisation neuromusculaire et récupération avant compétition",
+      "adaptations_expected": [
+        "Optimisation neuromusculaire",
+        "Amélioration de l'économie de mouvement",
+        "Récupération des systèmes énergétiques",
+        "Affûtage psychologique"
+      ],
+      "recovery_emphasis": 0.6
+    }
+  ],
+  "total_weeks": 16,
+  "current_ftp": 320,
+  "projected_ftp": 340
+}
