@@ -1,7 +1,7 @@
-# === AGENT CYCLISTE IA - REQUIREMENTS ===
+# === CYCLING AI AGENT - REQUIREMENTS CORRIGÉS ===
 
-# LangChain Core
-langchain>=0.1.0
+# LangChain Core (versions compatibles)
+langchain>=0.1.0,<0.2.0
 langchain-openai>=0.0.5
 langchain-community>=0.0.10
 
@@ -9,28 +9,20 @@ langchain-community>=0.0.10
 openai>=1.0.0
 python-dotenv>=1.0.0
 
-# Données et fichiers
-pandas>=1.5.0
+# RAG et vectorisation
+faiss-cpu>=1.7.0
 numpy>=1.21.0
 
-# Optionnel : APIs externes (à ajouter plus tard)
+# Données et fichiers
+pandas>=1.5.0
+
+# Optionnel : APIs externes 
 # stravalib>=1.0.0
 # requests>=2.28.0
 
-# Optionnel : Interface web (Phase 4)
+# Optionnel : Interface web
 # streamlit>=1.28.0
 # gradio>=4.0.0
-
-# Optionnel : LangGraph (Phase 2)
-# langgraph>=0.0.20
-
-# Optionnel : Base de données (Phase 3)  
-# sqlite3  # Inclus dans Python
-# sqlalchemy>=2.0.0
-
-# Optionnel : Visualisations (Phase 3)
-# matplotlib>=3.6.0
-# plotly>=5.0.0
 
 # Dev tools (optionnel)
 # pytest>=7.0.0

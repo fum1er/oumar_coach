@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Cycling AI Agent - Version Avancée avec RAG et Contextualisation
-Implémente toutes les optimisations suggérées dans l'analyse
+Cycling AI Agent - Version Avancée Corrigée
+Corrige les problèmes de l'agent original et améliore la fonctionnalité
 """
 
 import os
@@ -20,20 +20,20 @@ try:
 except ImportError:
     pass
 
-# LangChain imports avec gestion d'erreur
+# LangChain imports avec gestion d'erreur et imports corrects
 try:
-    from langchain_openai import ChatOpenAI
+    from langchain_openai import ChatOpenAI, OpenAIEmbeddings
     from langchain.memory import ConversationBufferWindowMemory
     from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
     from langchain.tools import BaseTool
     from langchain.agents import create_openai_functions_agent, AgentExecutor
     from langchain.schema import Document
-    from langchain.vectorstores import FAISS
-    from langchain_openai import OpenAIEmbeddings
+    from langchain_community.vectorstores import FAISS  # Import corrigé
     from langchain.text_splitter import RecursiveCharacterTextSplitter
     LANGCHAIN_AVAILABLE = True
-except ImportError:
-    print("⚠️ LangChain non installé. Utilisez: pip install langchain langchain-openai faiss-cpu")
+except ImportError as e:
+    print(f"⚠️ LangChain non installé complètement. Erreur: {e}")
+    print("Utilisez: pip install langchain langchain-openai langchain-community faiss-cpu")
     LANGCHAIN_AVAILABLE = False
 
 # === BASE DE CONNAISSANCES CYCLISTE ===
@@ -142,29 +142,29 @@ CYCLING_KNOWLEDGE_BASE = {
         "beginner": {
             "vo2max_intervals": {"max_reps": 3, "max_duration": 3, "recovery_ratio": "1:1"},
             "threshold_intervals": {"max_duration": 15, "recovery_ratio": "1:0.5"},
-            "weekly_intensity": 0.15  # 15% du temps en Z4+
+            "weekly_intensity": 0.15
         },
         "intermediate": {
             "vo2max_intervals": {"max_reps": 5, "max_duration": 5, "recovery_ratio": "1:0.75"},
             "threshold_intervals": {"max_duration": 25, "recovery_ratio": "1:0.25"},
-            "weekly_intensity": 0.20  # 20% du temps en Z4+
+            "weekly_intensity": 0.20
         },
         "advanced": {
             "vo2max_intervals": {"max_reps": 6, "max_duration": 8, "recovery_ratio": "1:0.5"},
             "threshold_intervals": {"max_duration": 40, "recovery_ratio": "1:0.25"},
-            "weekly_intensity": 0.25  # 25% du temps en Z4+
+            "weekly_intensity": 0.25
         }
     }
 }
 
-# === STRUCTURES DE DONNÉES AVANCÉES ===
+# === STRUCTURES DE DONNÉES AMÉLIORÉES ===
 
 @dataclass
 class WorkoutSegment:
     """Segment d'entraînement avec justification scientifique"""
-    type: str  # "Warmup", "SteadyState", "RepeatedIntervals", "Cooldown"
+    type: str
     duration_minutes: int
-    power_pct_ftp: Tuple[float, float]  # (min, max)
+    power_pct_ftp: Tuple[float, float]
     cadence_rpm: int
     description: str
     scientific_rationale: str = ""
@@ -190,7 +190,7 @@ class RepeatedInterval:
 class SmartWorkout:
     """Séance d'entraînement intelligente avec justifications"""
     name: str
-    type: str  # "endurance", "threshold", "vo2max", "recovery"
+    type: str
     description: str
     scientific_objective: str
     total_duration: int
@@ -200,7 +200,7 @@ class SmartWorkout:
     adaptation_notes: str = ""
     coaching_tips: str = ""
 
-# === OUTIL RAG POUR KNOWLEDGE BASE ===
+# === OUTIL RAG POUR KNOWLEDGE BASE CORRIGÉ ===
 
 class CyclingKnowledgeTool(BaseTool):
     """Outil RAG pour accéder à la base de connaissances cycliste"""
@@ -209,12 +209,14 @@ class CyclingKnowledgeTool(BaseTool):
     
     def __init__(self):
         super().__init__()
-        self.knowledge_base = CYCLING_KNOWLEDGE_BASE
+        # Stocker explicitement la base de connaissances
+        self.kb = CYCLING_KNOWLEDGE_BASE
+        self.vectorstore = None
         
         # Créer les documents pour le RAG
         documents = self._create_documents()
         
-        # Embeddings et vectorstore
+        # Initialiser le RAG si possible
         if LANGCHAIN_AVAILABLE:
             try:
                 embeddings = OpenAIEmbeddings(api_key=os.getenv("OPENAI_API_KEY"))
@@ -222,17 +224,16 @@ class CyclingKnowledgeTool(BaseTool):
                 splits = text_splitter.split_documents(documents)
                 self.vectorstore = FAISS.from_documents(splits, embeddings)
             except Exception as e:
-                print(f"Erreur initialisation RAG: {e}")
+                print(f"⚠️ Erreur initialisation RAG: {e}")
+                print("Utilisation du mode recherche simple")
                 self.vectorstore = None
-        else:
-            self.vectorstore = None
     
     def _create_documents(self) -> List[Document]:
         """Crée les documents pour le RAG"""
         documents = []
         
         # Documents sur les zones
-        for zone, data in self.knowledge_base["zones_definition"].items():
+        for zone, data in self.kb["zones_definition"].items():
             content = f"""Zone {zone} - {data['name']}:
 Puissance: {data['power_pct_ftp'][0]*100:.0f}-{data['power_pct_ftp'][1]*100:.0f}% FTP
 Fréquence cardiaque: {data['hr_pct_max'][0]}-{data['hr_pct_max'][1]}% FCmax
@@ -247,7 +248,7 @@ Utilisation: {data['when_use']}"""
             ))
         
         # Documents sur les structures
-        for structure, data in self.knowledge_base["workout_structures"].items():
+        for structure, data in self.kb["workout_structures"].items():
             content = f"""Structure {structure}:
 {json.dumps(data, indent=2, ensure_ascii=False)}"""
             
@@ -268,23 +269,32 @@ Utilisation: {data['when_use']}"""
                 return f"Informations trouvées:\n{results}"
             else:
                 # Recherche simple par mots-clés
-                results = []
-                query_lower = query.lower()
-                
-                # Recherche dans les zones
-                for zone, data in self.knowledge_base["zones_definition"].items():
-                    if any(term in query_lower for term in [zone.lower(), data['name'].lower()]):
-                        results.append(f"Zone {zone}: {data['objective']}")
-                
-                return "\n".join(results) if results else "Aucune information trouvée"
+                return self._simple_search(query)
                 
         except Exception as e:
             return f"Erreur recherche: {str(e)}"
+    
+    def _simple_search(self, query: str) -> str:
+        """Recherche simple par mots-clés si RAG indisponible"""
+        results = []
+        query_lower = query.lower()
+        
+        # Recherche dans les zones
+        for zone, data in self.kb["zones_definition"].items():
+            if any(term in query_lower for term in [zone.lower(), data['name'].lower(), 'zone', 'puissance']):
+                results.append(f"Zone {zone} - {data['name']}: {data['objective']}")
+        
+        # Recherche dans les structures
+        for structure, data in self.kb["workout_structures"].items():
+            if any(term in query_lower for term in [structure, 'structure', 'entrainement']):
+                results.append(f"Structure {structure}: {data.get('notes', 'Informations disponibles')}")
+        
+        return "\n".join(results) if results else "Aucune information trouvée pour cette requête"
 
-# === OUTIL GÉNÉRATION AVANCÉE ===
+# === OUTIL GÉNÉRATION AVANCÉE SIMPLIFIÉ ===
 
 class AdvancedWorkoutTool(BaseTool):
-    """Outil de génération de séances avancé avec contextualisation"""
+    """Outil de génération de séances avancé simplifié"""
     name = "generate_advanced_workout"
     description = "Génère une séance avancée avec justifications scientifiques. Paramètres: type, duration_minutes, athlete_level, ftp, objectives"
     
@@ -294,7 +304,7 @@ class AdvancedWorkoutTool(BaseTool):
             # Créer la séance intelligente
             workout = self._create_smart_workout(type, duration_minutes, athlete_level, ftp, objectives)
             
-            # Générer les fichiers avec format JSON intermédiaire
+            # Générer les fichiers
             files = self._generate_workout_files(workout)
             
             # Créer le rapport détaillé
@@ -326,8 +336,9 @@ class AdvancedWorkoutTool(BaseTool):
     def _create_smart_workout(self, workout_type: str, duration: int, level: str, ftp: int, objectives: str) -> SmartWorkout:
         """Crée une séance intelligente selon le type"""
         
-        knowledge = CYCLING_KNOWLEDGE_BASE
-        level_adaptations = knowledge["athlete_adaptations"].get(level, knowledge["athlete_adaptations"]["intermediate"])
+        level_adaptations = CYCLING_KNOWLEDGE_BASE["athlete_adaptations"].get(
+            level, CYCLING_KNOWLEDGE_BASE["athlete_adaptations"]["intermediate"]
+        )
         
         if workout_type.lower() in ['vo2max', 'vo2', 'pma']:
             return self._create_advanced_vo2max(duration, level, ftp, level_adaptations)
@@ -339,7 +350,7 @@ class AdvancedWorkoutTool(BaseTool):
             return self._create_advanced_vo2max(duration, level, ftp, level_adaptations)
     
     def _create_advanced_vo2max(self, duration: int, level: str, ftp: int, adaptations: Dict) -> SmartWorkout:
-        """Crée une séance VO2max avancée avec toutes les optimisations"""
+        """Crée une séance VO2max avancée"""
         
         # Paramètres selon le niveau
         max_reps = adaptations["vo2max_intervals"]["max_reps"]
@@ -347,8 +358,8 @@ class AdvancedWorkoutTool(BaseTool):
         recovery_ratio = adaptations["vo2max_intervals"]["recovery_ratio"]
         
         # Calcul des durées optimales
-        work_duration = min(max_duration, 4)  # 3-4 minutes optimal pour VO2max
-        rest_duration = int(work_duration * eval(recovery_ratio.split(':')[1]) / eval(recovery_ratio.split(':')[0]))
+        work_duration = min(max_duration, 4)
+        rest_duration = int(work_duration * 0.75)  # Ratio simplifié
         
         # Calculer le nombre de répétitions possible
         warmup_time = 15
@@ -358,7 +369,7 @@ class AdvancedWorkoutTool(BaseTool):
         
         single_rep_time = work_duration + rest_duration
         calculated_reps = min(max_reps, available_time // single_rep_time)
-        actual_reps = max(3, calculated_reps)  # Minimum 3 répétitions
+        actual_reps = max(3, calculated_reps)
         
         # Zones selon la base de connaissances
         z1_power = CYCLING_KNOWLEDGE_BASE["zones_definition"]["Z1"]["power_pct_ftp"]
@@ -370,7 +381,7 @@ class AdvancedWorkoutTool(BaseTool):
             WorkoutSegment(
                 type="Warmup",
                 duration_minutes=warmup_time,
-                power_pct_ftp=(0.50, 0.65),  # Éviter 0.000
+                power_pct_ftp=(0.50, 0.65),
                 cadence_rpm=85,
                 description="Échauffement progressif avec activation cardiovasculaire",
                 scientific_rationale="Préparation du système cardiovasculaire et augmentation graduelle du flux sanguin musculaire"
@@ -386,7 +397,7 @@ class AdvancedWorkoutTool(BaseTool):
             WorkoutSegment(
                 type="Cooldown",
                 duration_minutes=cooldown_time,
-                power_pct_ftp=(0.40, 0.50),  # Zone 1 active
+                power_pct_ftp=(0.40, 0.50),
                 cadence_rpm=80,
                 description="Retour au calme actif pour élimination lactate",
                 scientific_rationale="Maintien circulation sanguine pour élimination déchets métaboliques"
@@ -427,14 +438,128 @@ class AdvancedWorkoutTool(BaseTool):
     
     def _create_advanced_threshold(self, duration: int, level: str, ftp: int, adaptations: Dict) -> SmartWorkout:
         """Crée une séance seuil avancée"""
-        # Structure similaire mais pour Z4...
-        # [Implémentation détaillée selon les mêmes principes]
-        pass
+        max_duration = adaptations["threshold_intervals"]["max_duration"]
+        
+        # Structure 2x20min ou adaptée
+        if duration >= 80 and max_duration >= 20:
+            work_blocks = [20, 20]
+            recovery_time = 5
+        else:
+            # Adapter selon la durée et le niveau
+            available_work = duration - 30  # 15min warmup + 15min cooldown
+            if max_duration >= available_work:
+                work_blocks = [available_work]
+                recovery_time = 0
+            else:
+                num_blocks = min(3, available_work // max_duration)
+                work_blocks = [max_duration] * num_blocks
+                recovery_time = 5
+        
+        z1_power = CYCLING_KNOWLEDGE_BASE["zones_definition"]["Z1"]["power_pct_ftp"]
+        z2_power = CYCLING_KNOWLEDGE_BASE["zones_definition"]["Z2"]["power_pct_ftp"]
+        z4_power = CYCLING_KNOWLEDGE_BASE["zones_definition"]["Z4"]["power_pct_ftp"]
+        
+        segments = [
+            WorkoutSegment(
+                type="Warmup",
+                duration_minutes=15,
+                power_pct_ftp=(0.50, 0.65),
+                cadence_rpm=85,
+                description="Échauffement progressif",
+                scientific_rationale="Préparation progressive au seuil lactique"
+            ),
+            WorkoutSegment(
+                type="Cooldown",
+                duration_minutes=15,
+                power_pct_ftp=(0.40, 0.50),
+                cadence_rpm=80,
+                description="Retour au calme",
+                scientific_rationale="Élimination progressive du lactate"
+            )
+        ]
+        
+        repeated_intervals = []
+        for i, work_time in enumerate(work_blocks):
+            repeated_intervals.append(
+                RepeatedInterval(
+                    repetitions=1,
+                    work_duration=work_time,
+                    work_power_pct=z4_power,
+                    work_cadence=95,
+                    rest_duration=recovery_time if i < len(work_blocks) - 1 else 0,
+                    rest_power_pct=z2_power,
+                    rest_cadence=85,
+                    work_description=f"Bloc seuil {i+1}/{len(work_blocks)} - Maintenir FTP",
+                    rest_description="Récupération active",
+                    scientific_rationale=f"Bloc {work_time}min au seuil lactique pour améliorer FTP"
+                )
+            )
+        
+        estimated_tss = self._calculate_tss(segments, repeated_intervals, ftp)
+        
+        return SmartWorkout(
+            name=f"Threshold {'+'.join(map(str, work_blocks))}min",
+            type="threshold",
+            description=f"Séance de seuil lactique avec {len(work_blocks)} bloc(s) pour améliorer le FTP",
+            scientific_objective="Amélioration du seuil lactique (FTP) et de la capacité à maintenir des efforts soutenus",
+            total_duration=duration,
+            segments=segments,
+            repeated_intervals=repeated_intervals,
+            ftp=ftp,
+            adaptation_notes=f"Adapté pour {level}: blocs de {work_blocks} minutes, récupération active",
+            coaching_tips=f"Maintenez une puissance stable, respirez de façon contrôlée. TSS estimé: {estimated_tss:.0f}"
+        )
     
     def _create_advanced_endurance(self, duration: int, level: str, ftp: int, adaptations: Dict) -> SmartWorkout:
         """Crée une séance endurance avancée"""
-        # Structure similaire mais pour Z2...
-        pass
+        warmup_time = 15
+        cooldown_time = 15
+        main_time = duration - warmup_time - cooldown_time
+        
+        z1_power = CYCLING_KNOWLEDGE_BASE["zones_definition"]["Z1"]["power_pct_ftp"]
+        z2_power = CYCLING_KNOWLEDGE_BASE["zones_definition"]["Z2"]["power_pct_ftp"]
+        
+        segments = [
+            WorkoutSegment(
+                type="Warmup",
+                duration_minutes=warmup_time,
+                power_pct_ftp=(0.50, 0.65),
+                cadence_rpm=85,
+                description="Échauffement progressif",
+                scientific_rationale="Activation graduelle du système cardiovasculaire"
+            ),
+            WorkoutSegment(
+                type="SteadyState",
+                duration_minutes=main_time,
+                power_pct_ftp=z2_power,
+                cadence_rpm=90,
+                description="Endurance aérobie stable - conversation possible",
+                scientific_rationale="Développement des adaptations mitochondriales et de l'efficacité cardiaque"
+            ),
+            WorkoutSegment(
+                type="Cooldown",
+                duration_minutes=cooldown_time,
+                power_pct_ftp=(0.40, 0.50),
+                cadence_rpm=85,
+                description="Retour au calme actif",
+                scientific_rationale="Maintien de la circulation pour l'élimination des déchets"
+            )
+        ]
+        
+        estimated_tss = self._calculate_tss(segments, [], ftp)
+        
+        return SmartWorkout(
+            name=f"Endurance {duration}min",
+            type="endurance",
+            description=f"Séance d'endurance aérobie de {main_time} minutes pour développer la base cardiovasculaire",
+            scientific_objective="Développement de l'endurance fondamentale, amélioration de l'efficacité cardiaque et du métabolisme des graisses",
+            total_duration=duration,
+            segments=segments,
+            repeated_intervals=[],
+            ftp=ftp,
+            adaptation_notes=f"Intensité modérée pour {level}, focus sur l'efficacité du pédalage",
+            coaching_tips=f"Maintenez une conversation possible, cadence fluide 85-95 rpm. TSS estimé: {estimated_tss:.0f}"
+        )
     
     def _calculate_tss(self, segments: List[WorkoutSegment], intervals: List[RepeatedInterval], ftp: int) -> float:
         """Calcule le TSS estimé"""
@@ -455,9 +580,12 @@ class AdvancedWorkoutTool(BaseTool):
             work_tss = work_duration_hours * (work_avg_pct ** 2) * 100
             
             # Rest intervals
-            rest_avg_pct = (interval.rest_power_pct[0] + interval.rest_power_pct[1]) / 2
-            rest_duration_hours = (interval.rest_duration * interval.repetitions) / 60
-            rest_tss = rest_duration_hours * (rest_avg_pct ** 2) * 100
+            if interval.rest_duration > 0:
+                rest_avg_pct = (interval.rest_power_pct[0] + interval.rest_power_pct[1]) / 2
+                rest_duration_hours = (interval.rest_duration * interval.repetitions) / 60
+                rest_tss = rest_duration_hours * (rest_avg_pct ** 2) * 100
+            else:
+                rest_tss = 0
             
             total_tss += work_tss + rest_tss
         
@@ -466,29 +594,33 @@ class AdvancedWorkoutTool(BaseTool):
     def _generate_workout_files(self, workout: SmartWorkout) -> Dict[str, str]:
         """Génère tous les formats de fichiers"""
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        safe_name = workout.name.replace(' ', '_').replace('×', 'x')
+        safe_name = workout.name.replace(' ', '_').replace('×', 'x').replace('+', '_')
         
         output_dir = Path("output_advanced")
         output_dir.mkdir(exist_ok=True)
         
         files = {}
         
-        # 1. JSON intermédiaire (structure logique)
-        json_structure = self._create_json_structure(workout)
-        json_file = output_dir / f"{safe_name}_{timestamp}_structure.json"
-        with open(json_file, 'w', encoding='utf-8') as f:
-            json.dump(json_structure, f, indent=2, ensure_ascii=False)
-        files['JSON Structure'] = str(json_file)
-        
-        # 2. ZWO optimisé
-        zwo_file = output_dir / f"{safe_name}_{timestamp}.zwo"
-        self._generate_optimized_zwo(workout, str(zwo_file))
-        files['ZWO (MyWhoosh)'] = str(zwo_file)
-        
-        # 3. JSON TrainingPeaks
-        tp_file = output_dir / f"{safe_name}_{timestamp}_tp.json"
-        self._generate_trainingpeaks_json(workout, str(tp_file))
-        files['JSON (TrainingPeaks)'] = str(tp_file)
+        try:
+            # 1. JSON intermédiaire
+            json_structure = self._create_json_structure(workout)
+            json_file = output_dir / f"{safe_name}_{timestamp}_structure.json"
+            with open(json_file, 'w', encoding='utf-8') as f:
+                json.dump(json_structure, f, indent=2, ensure_ascii=False)
+            files['JSON Structure'] = str(json_file)
+            
+            # 2. ZWO optimisé
+            zwo_file = output_dir / f"{safe_name}_{timestamp}.zwo"
+            self._generate_optimized_zwo(workout, str(zwo_file))
+            files['ZWO (MyWhoosh)'] = str(zwo_file)
+            
+            # 3. JSON TrainingPeaks
+            tp_file = output_dir / f"{safe_name}_{timestamp}_tp.json"
+            self._generate_trainingpeaks_json(workout, str(tp_file))
+            files['JSON (TrainingPeaks)'] = str(tp_file)
+            
+        except Exception as e:
+            print(f"⚠️ Erreur génération fichiers: {e}")
         
         return files
     
@@ -544,7 +676,7 @@ class AdvancedWorkoutTool(BaseTool):
         }
     
     def _generate_optimized_zwo(self, workout: SmartWorkout, filename: str):
-        """Génère un fichier ZWO optimisé avec les bonnes pratiques"""
+        """Génère un fichier ZWO optimisé"""
         root = ET.Element("workout_file")
         
         # Métadonnées améliorées
@@ -591,7 +723,7 @@ class AdvancedWorkoutTool(BaseTool):
                 work_step.set("Cadence", str(interval.work_cadence))
                 
                 # Rest interval (sauf après le dernier)
-                if rep < interval.repetitions - 1:
+                if rep < interval.repetitions - 1 and interval.rest_duration > 0:
                     rest_step = ET.SubElement(workout_elem, "SteadyState")
                     rest_step.set("Duration", str(interval.rest_duration * 60))
                     rest_step.set("PowerLow", f"{interval.rest_power_pct[0]:.3f}")
@@ -604,7 +736,7 @@ class AdvancedWorkoutTool(BaseTool):
         tree.write(filename, encoding='utf-8', xml_declaration=True)
     
     def _generate_trainingpeaks_json(self, workout: SmartWorkout, filename: str):
-        """Génère JSON pour TrainingPeaks avec métadonnées complètes"""
+        """Génère JSON pour TrainingPeaks"""
         tp_data = {
             "name": workout.name,
             "description": workout.description,
@@ -654,7 +786,7 @@ class AdvancedWorkoutTool(BaseTool):
                 step_index += 1
                 
                 # Rest (sauf dernier)
-                if rep < interval.repetitions - 1:
+                if rep < interval.repetitions - 1 and interval.rest_duration > 0:
                     tp_data["intervals"].append({
                         "step": step_index,
                         "duration": interval.rest_duration * 60,
@@ -681,10 +813,10 @@ class AdvancedWorkoutTool(BaseTool):
 • Temps en zone haute (Z4+): {self._calculate_high_intensity_time(workout)} minutes
 
 ⚡ ADAPTATIONS PHYSIOLOGIQUES ATTENDUES:
-• Amélioration VO2max: +++
-• Amélioration capacité tampon lactate: ++
-• Amélioration coordination neuromusculaire: ++
-• Temps de récupération recommandé: 24-48h
+• Amélioration VO2max: {'+++' if workout.type == 'vo2max' else '++' if workout.type == 'threshold' else '+'}
+• Amélioration capacité tampon lactate: {'++' if workout.type in ['vo2max', 'threshold'] else '+'}
+• Amélioration coordination neuromusculaire: {'++' if workout.type == 'vo2max' else '+'}
+• Temps de récupération recommandé: {'24-48h' if tss > 80 else '12-24h'}
 """
     
     def _calculate_high_intensity_time(self, workout: SmartWorkout) -> int:
@@ -702,7 +834,7 @@ class AdvancedWorkoutTool(BaseTool):
         return high_intensity_time
     
     def _indent_xml(self, elem, level=0):
-        """Indentation XML pour Python 3.8"""
+        """Indentation XML"""
         i = "\n" + level * "  "
         if len(elem):
             if not elem.text or not elem.text.strip():
@@ -717,7 +849,7 @@ class AdvancedWorkoutTool(BaseTool):
             if level and (not elem.tail or not elem.tail.strip()):
                 elem.tail = i
 
-# === AGENT PRINCIPAL AVANCÉ ===
+# === AGENT PRINCIPAL CORRIGÉ ===
 
 class AdvancedCyclingAgent:
     """Agent de coaching cycliste avancé avec RAG et contextualisation"""
@@ -834,16 +966,23 @@ Sois un coach d'élite qui rivalise avec les meilleurs entraîneurs mondiaux !""
         """Reset de la conversation"""
         self.memory.clear()
 
-# === INTERFACE PRINCIPALE ===
+# === INTERFACE PRINCIPALE CORRIGÉE ===
 
 def main():
     """Interface principale du coach avancé"""
-    print("🚴 CYCLING AI COACH - Version Elite avec RAG")
-    print("=" * 55)
+    print("🚴 CYCLING AI COACH - Version Elite avec RAG (Corrigée)")
+    print("=" * 60)
     print("Tapez 'quit' pour quitter, 'reset' pour nouvelle conversation")
     print()
     
     try:
+        # Vérification clé API
+        api_key = os.getenv("OPENAI_API_KEY")
+        if not api_key:
+            print("⚠️ Clé API OpenAI non trouvée !")
+            print("Définissez la variable d'environnement OPENAI_API_KEY")
+            return
+        
         # Initialisation
         coach = AdvancedCyclingAgent()
         print("✅ Coach IA Elite initialisé avec succès !")
@@ -872,6 +1011,8 @@ def main():
     
     except Exception as e:
         print(f"❌ Erreur : {e}")
+        print("💡 Assurez-vous d'avoir installé toutes les dépendances :")
+        print("pip install langchain langchain-openai langchain-community faiss-cpu python-dotenv")
 
 if __name__ == "__main__":
     main()
