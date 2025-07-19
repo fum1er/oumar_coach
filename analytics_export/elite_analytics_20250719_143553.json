@@ -1,0 +1,75 @@
+{
+  "dashboard": {
+    "session_info": {
+      "session_id": "20250719_143553",
+      "project": "elite-cycling-coach-test",
+      "langsmith_enabled": true,
+      "timestamp": "2025-07-19T14:35:54.625795"
+    },
+    "performance_metrics": {
+      "avg_response_time_seconds": 1.0,
+      "success_rate_percent": 100.0,
+      "total_operations": 3,
+      "error_count": 0
+    },
+    "usage_statistics": {
+      "workouts_generated": 2,
+      "plans_created": 1,
+      "athletes_coached": 1,
+      "api_calls": 0
+    },
+    "popular_features": {
+      "top_workout_types": [
+        [
+          "vo2max",
+          1
+        ],
+        [
+          "threshold",
+          1
+        ]
+      ],
+      "athletes_with_most_analyses": [
+        {
+          "athlete_id": "pogacar_001",
+          "analyses_count": 1,
+          "total_insights": 15
+        }
+      ]
+    },
+    "system_health": {
+      "langsmith_status": "Connected",
+      "memory_usage": "43.5 MB",
+      "uptime": "0:00:01"
+    }
+  },
+  "detailed_metrics": {
+    "response_times": [
+      1.2,
+      0.8
+    ],
+    "accuracy_scores": [],
+    "user_satisfaction": [],
+    "workout_effectiveness": [],
+    "ftp_improvements": []
+  },
+  "raw_analytics": {
+    "peak_usage_hours": [],
+    "popular_workout_types": {
+      "vo2max": 1,
+      "threshold": 1
+    },
+    "athlete_progression": {
+      "pogacar_001": {
+        "analyses_count": 1,
+        "total_insights": 15,
+        "avg_response_time": 0.5
+      }
+    },
+    "system_performance": {}
+  },
+  "configuration": {
+    "langsmith_enabled": true,
+    "project_name": "elite-cycling-coach-test"
+  }
+}

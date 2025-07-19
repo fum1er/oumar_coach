@@ -1,0 +1,177 @@
+{
+  "athlete": {
+    "athlete_id": "main_athlete",
+    "name": "Killian Guélou",
+    "birth_date": null,
+    "ftp_watts": 320,
+    "hr_max_bpm": 196,
+    "weight_kg": 80.0,
+    "height_cm": 175.0,
+    "ftp_per_kg": 4.0,
+    "hr_zones": {
+      "Z1": [
+        123,
+        137
+      ],
+      "Z2": [
+        137,
+        152
+      ],
+      "Z3": [
+        152,
+        166
+      ],
+      "Z4": [
+        166,
+        181
+      ],
+      "Z5": [
+        181,
+        196
+      ]
+    },
+    "power_zones": {
+      "Z1": {
+        "min_watts": 144,
+        "max_watts": 176,
+        "name": "Récupération Active"
+      },
+      "Z2": {
+        "min_watts": 179,
+        "max_watts": 240,
+        "name": "Endurance Aérobie"
+      },
+      "Z3": {
+        "min_watts": 243,
+        "max_watts": 288,
+        "name": "Tempo"
+      },
+      "Z4": {
+        "min_watts": 291,
+        "max_watts": 336,
+        "name": "Seuil Lactique"
+      },
+      "Z5": {
+        "min_watts": 339,
+        "max_watts": 384,
+        "name": "VO2max"
+      },
+      "Z6": {
+        "min_watts": 387,
+        "max_watts": 480,
+        "name": "Capacité Anaérobie"
+      },
+      "Z7": {
+        "min_watts": 483,
+        "max_watts": 960,
+        "name": "Puissance Neuromusculaire"
+      }
+    },
+    "ftp_history": [
+      {
+        "date": "2025-07-19",
+        "ftp": 320,
+        "test_type": "initial"
+      }
+    ],
+    "weight_history": [
+      {
+        "date": "2025-07-19",
+        "weight": 70.0
+      }
+    ],
+    "hr_max_history": null,
+    "experience_level": "advanced",
+    "training_availability": {
+      "weekdays": 60,
+      "weekends": 120
+    },
+    "preferred_training_times": [
+      "06:00",
+      "18:00"
+    ],
+    "primary_goals": [
+      "improve_ftp",
+      "racing",
+      "endurance"
+    ],
+    "target_events": [],
+    "current_season_phase": "base",
+    "bike_setup": {
+      "bike_type": "road",
+      "position": "aggressive",
+      "crank_length": 172.5,
+      "tire_pressure": {
+        "front": 85,
+        "rear": 87
+      }
+    },
+    "power_meter": null,
+    "trainer_type": null,
+    "resting_hr": 50,
+    "vo2_max": null,
+    "lactate_threshold_hr": null
+  },
+  "langsmith": {
+    "enabled": true,
+    "api_key": "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",
+    "endpoint": "https://api.smith.langchain.com",
+    "project_name": "elite-cycling-coach",
+    "default_tags": [
+      "elite",
+      "cycling",
+      "ai-coach"
+    ],
+    "environment": "development",
+    "trace_sampling_rate": 1.0
+  },
+  "langgraph": {
+    "max_concurrent_threads": 4,
+    "default_thread_timeout": 300,
+    "max_retries": 3,
+    "retry_delay": 1.0,
+    "enable_persistence": true,
+    "state_backend": "memory",
+    "available_workflows": [
+      "workout_generation",
+      "periodization_planning",
+      "performance_analysis",
+      "race_strategy",
+      "recovery_monitoring"
+    ]
+  },
+  "apis": {
+    "strava_enabled": false,
+    "strava_client_id": null,
+    "strava_client_secret": null,
+    "trainingpeaks_enabled": false,
+    "trainingpeaks_api_key": null,
+    "wahoo_enabled": false,
+    "mywhoosh_enabled": true,
+    "openweather_api_key": null,
+    "api_rate_limits": {
+      "strava": 600,
+      "trainingpeaks": 1000,
+      "openweather": 1000
+    }
+  },
+  "performance": {
+    "enable_caching": true,
+    "cache_ttl_seconds": 3600,
+    "max_cache_size_mb": 100,
+    "target_workout_generation_time": 2.0,
+    "target_plan_generation_time": 5.0,
+    "target_analysis_time": 1.0,
+    "enable_batch_processing": true,
+    "batch_size": 10,
+    "enable_performance_monitoring": true,
+    "log_slow_operations": true,
+    "slow_operation_threshold": 3.0
+  },
+  "system_info": {
+    "version": "1.0.0-elite",
+    "created": "2025-07-19T14:33:02.847187",
+    "config_file": null,
+    "environment": "development"
+  }
+}

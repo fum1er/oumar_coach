@@ -10,3 +10,17 @@ venv/
 .venv/
 .zwo
 .json
+# Fichiers générés
+output_*/
+plan_*.json
+*.zwo
+user_profiles/
+
+# Fichiers de test
+test_*.py
+*_test.py
+
+# Environnement
+.env
+__pycache__/
+*.pyc
